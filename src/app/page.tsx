@@ -1,57 +1,134 @@
-import { useState } from 'react';
+"use client";
+
+import { useState, useEffect } from "react";
+import { useCart } from './contexts/CartContext'
+import { Product } from '../types/types'
+import ProductCard from "../components/ProductCard";
+import Header from "../components/Header";
+import Footer from "@/components/Footer";
+
+const API_URL = "https://fakestoreapi.com/products";
+
 
 export default function Loja() {
-  const [produtos] = useState([
-    { id: 1, nome: 'Camiseta', preco: 49.90 },
-    { id: 2, nome: 'Calça Jeans', preco: 99.90 },
-    { id: 3, nome: 'Tênis', preco: 199.90 },
-  ]);
+  const [produtos, setProdutos] = useState<Product[]>([]);
+  const [message, setMessage] = useState<string>("");
+  const [foiAdicionado, setFoiAdicionado] = useState<boolean | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const { cart, addToCart, removeFromCart, updateQuantity, clearCart, totalItems, totalPrice } = useCart();
 
-  const [carrinho, setCarrinho] = useState([]);
+  // Busca os produtos na API
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(API_URL);
+        if (!response.ok) {
+          throw new Error(`Erro ao buscar produtos: ${response.status}`);
+        }
+        const data: any[] = await response.json();
+        // Adaptar os nomes dos campos da API para os nomes usados na aplicação
+        const produtosAdaptados: Product[] = data.map((item) => ({
+          id: item.id,
+          name: item.title, // Usando 'title' da API
+          price: item.price,
+          description: item.description,
+          image: item.image
+        }));
+        setProdutos(produtosAdaptados);
+      } catch (error: any) {
+        setError(error.message);
+        console.log('error => ', error)
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const adicionarAoCarrinho = (produto) => {
-    setCarrinho([...carrinho, produto]);
-  };
+    fetchProducts();
+  }, []);
 
-  const removerDoCarrinho = (id) => {
-    setCarrinho(carrinho.filter(item => item.id !== id));
-  };
 
-  const total = carrinho.reduce((sum, item) => sum + item.preco, 0);
+  return (<>
+    {loading
+      ?
+      // Site carregando
+      <h1 className="text-6xl text-center ">Loading...</h1>
+      :
+      // Site carregado
+      <>
+        {/* Titulo e produtos */}
 
-  return (
-    <div style={{ padding: '20px', fontFamily: 'Arial' }}>
-      <h1>Loja Simples</h1>
-      
-      <h2>Produtos</h2>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }}>
-        {produtos.map(produto => (
-          <div key={produto.id} style={{ border: '1px solid #ddd', padding: '10px' }}>
-            <h3>{produto.nome}</h3>
-            <p>R$ {produto.preco.toFixed(2)}</p>
-            <button onClick={() => adicionarAoCarrinho(produto)}>
-              Adicionar ao Carrinho
-            </button>
+        <Header />
+
+        <div className="w-full h-screen">
+          <img src={'/modelo-home.jpg'} alt="Lojas Paraibanas" className="object-cover w-full h-full  " />
+        </div>
+
+        {/* Produtos */}
+        <div className="w-4/5 mx-auto">
+          <div className="grid grid-cols-3 gap-10 ">
+            {produtos.map((produto) => {
+              return (
+                <ProductCard key={produto.id} produto={produto} addToCart={addToCart} />
+              )
+            }
+            )}
           </div>
-        ))}
-      </div>
 
-      <h2>Carrinho ({carrinho.length})</h2>
-      <ul>
-        {carrinho.map(item => (
-          <li key={item.id} style={{ marginBottom: '10px' }}>
-            {item.nome} - R$ {item.preco.toFixed(2)}
-            <button 
-              onClick={() => removerDoCarrinho(item.id)}
-              style={{ marginLeft: '10px' }}
-            >
-              Remover
-            </button>
-          </li>
-        ))}
-      </ul>
+          {/* Carrinho e total*/}
+          <div className="grid grid-cols-4 gap-20 mt-5 ">
+            <ul className="flex flex-col gap-2 col-span-3">
+              {cart.map((item) => (
+                <li key={item.id} className="flex gap-4 bg-gray-100 p-2 rounded-md shadow-gray-400 shadow-xs ">
+                  {item.name} - R$ {item.price.toFixed(2)}
+                  <ul className="flex gap-2 items-center justify-center">
+                    <li
+                      className="border px-2 bg-green-500 text-slate-900 border-green-900 rounded-full cursor-pointer hover:bg-slate-900 hover:text-white select-none"
+                      onClick={() => updateQuantity(item.id, (item.quantity || 1) - 1)}>
+                      -
+                    </li>
+                    <li>{item.quantity}</li>
+                    <li
+                      className="border px-2 bg-green-500 text-slate-900 border-green-900 rounded-full cursor-pointer hover:bg-slate-900 hover:text-white select-none"
+                      onClick={() => updateQuantity(item.id, (item.quantity || 1) + 1)}>
+                      +
+                    </li>
+                  </ul>
+                  <button
+                    onClick={() => removeFromCart(item.id)}
+                    className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded cursor-pointer"
+                  >
+                    Remover
+                  </button>
+                </li>
+              ))}
+            </ul>
 
-      <h3>Total: R$ {total.toFixed(2)}</h3>
-    </div>
+            {/* Total, finalizar e limpar*/}
+            <div className="flex flex-col gap-2 text-right justify-end">
+              <h3 className="text-2xl text-green-400 rounded-md p-2 ">Total: R$ {totalPrice.toFixed(2)}</h3>
+
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded cursor-pointer w-full ml-auto ">Finalizar Compra</button>
+              <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded cursor-pointer w-full ml-auto " onClick={clearCart}>Limpar Carrinho</button>
+            </div>
+          </div>
+
+
+          {/* Mensagens de sucesso e erro */}
+          {/* {message && (
+        <div
+          role="alert"
+          className={`fixed right-10 top-10 border px-2 py-1 text-2xl rounded-md border-black text-white ${foiAdicionado ? "bg-green-500" : "bg-red-500"
+            }`}
+        >
+          {message}
+        </div>
+      )} */}
+
+
+        </div >
+        <Footer />
+      </>}
+  </>
   );
 }
