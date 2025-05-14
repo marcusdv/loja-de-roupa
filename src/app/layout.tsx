@@ -5,7 +5,7 @@ import { CartProvider } from './contexts/CartContext'
 
 
 export const metadata: Metadata = {
-  title: "Loja paraibanas",
+  title: "Modique",
   description: "Loja que vende coisas",
 };
 

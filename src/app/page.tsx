@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useCart } from './contexts/CartContext'
 import { Product } from '../types/types'
 import ProductCard from "../components/ProductCard";
-import Header from "../components/Header";
+import Header from "../components/Header/Header";
 import Footer from "@/components/Footer";
 
 const API_URL = "https://fakestoreapi.com/products";
