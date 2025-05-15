@@ -7,6 +7,7 @@ import ProductCard from "../components/ProductCard";
 import Header from "../components/Header/Header";
 import Footer from "@/components/Footer";
 
+
 const API_URL = "https://fakestoreapi.com/products";
 
 
@@ -33,9 +34,9 @@ export default function Loja() {
           throw new Error('Erro ao buscar produtos');
         }
         // Adaptar os nomes dos campos da API para os nomes usados na aplicação
-        const produtosAdaptados: Product[] = data.map((item) => ({
+        const produtosAdaptados: Product[] = data.map((item: Product) => ({
           id: item.id,
-          name: item.title, // Usando 'title' da API
+          name: item.name, // mudei aqui de title para name
           price: item.price,
           description: item.description,
           image: item.image
