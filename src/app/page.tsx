@@ -15,8 +15,10 @@ export default function Loja() {
   // const [message, setMessage] = useState<string>("");
   // const [foiAdicionado, setFoiAdicionado] = useState<boolean | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [_, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const { cart, addToCart, removeFromCart, updateQuantity, clearCart, /*totalItems,*/ totalPrice } = useCart();
+
+
 
   // Busca os produtos na API
   useEffect(() => {
@@ -26,7 +28,10 @@ export default function Loja() {
         if (!response.ok) {
           throw new Error(`Erro ao buscar produtos: ${response.status}`);
         }
-        const data: any[] = await response.json();
+        const data = await response.json();
+        if (!data) {
+          throw new Error('Erro ao buscar produtos');
+        }
         // Adaptar os nomes dos campos da API para os nomes usados na aplicação
         const produtosAdaptados: Product[] = data.map((item) => ({
           id: item.id,
@@ -36,9 +41,10 @@ export default function Loja() {
           image: item.image
         }));
         setProdutos(produtosAdaptados);
-      } catch (error: any) {
-        setError(e => e = error.message);
-        console.log('error => ', error)
+      } catch (error) {
+        if (error instanceof Error) {
+          setError(error.message);
+        }
       } finally {
         setLoading(false);
       }
@@ -47,6 +53,10 @@ export default function Loja() {
     fetchProducts();
   }, []);
 
+
+  if (error) {
+    console.log('error => ', error)
+  }
 
   return (<>
     {loading

@@ -154,6 +154,7 @@ function SubHeader() {
                                                 obj.itens.map((item, index) => {
                                                     return <li
                                                         className=" w-4/5 mx-auto "
+                                                        key={item}
                                                     >
                                                         {<>
                                                             {index === 0 && <h3 className='font-bold text-lg px-4 py-2'>{obj.categoria}</h3>}
