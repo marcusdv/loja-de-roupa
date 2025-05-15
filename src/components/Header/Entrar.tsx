@@ -1,11 +1,8 @@
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { IoPersonOutline } from "react-icons/io5";
-import { useState, useRef } from 'react'
-
 
 function Entrar({ entrarIsHovered }: { entrarIsHovered: boolean }) {
 
-    const entrarRef = useRef<HTMLLIElement>(null)
 
 
     const entrarDropItems = [
