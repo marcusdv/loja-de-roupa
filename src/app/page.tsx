@@ -12,11 +12,11 @@ const API_URL = "https://fakestoreapi.com/products";
 
 export default function Loja() {
   const [produtos, setProdutos] = useState<Product[]>([]);
-  const [message, setMessage] = useState<string>("");
-  const [foiAdicionado, setFoiAdicionado] = useState<boolean | null>(null);
+  // const [message, setMessage] = useState<string>("");
+  // const [foiAdicionado, setFoiAdicionado] = useState<boolean | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-  const { cart, addToCart, removeFromCart, updateQuantity, clearCart, totalItems, totalPrice } = useCart();
+  const [_, setError] = useState<string | null>(null);
+  const { cart, addToCart, removeFromCart, updateQuantity, clearCart, /*totalItems,*/ totalPrice } = useCart();
 
   // Busca os produtos na API
   useEffect(() => {
@@ -37,7 +37,7 @@ export default function Loja() {
         }));
         setProdutos(produtosAdaptados);
       } catch (error: any) {
-        setError(error.message);
+        setError(e => e = error.message);
         console.log('error => ', error)
       } finally {
         setLoading(false);
