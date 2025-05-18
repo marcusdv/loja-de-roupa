@@ -6,3 +6,11 @@ export type Product = {
     image: string,
     quantity?: number,
 }
+
+export type ProductAPIResponse = {
+    id: number,
+    title: string,
+    price: number,
+    description: string,
+    image: string
+}

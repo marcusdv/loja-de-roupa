@@ -2,10 +2,11 @@
 
 import { useState, useEffect } from "react";
 import { useCart } from './contexts/CartContext'
-import { Product } from '../types/types'
+import { Product, ProductAPIResponse } from '../types/types'
 import ProductCard from "../components/ProductCard";
 import Header from "../components/Header/Header";
 import Footer from "@/components/Footer";
+import Image from 'next/image'
 
 
 const API_URL = "https://fakestoreapi.com/products";
@@ -17,7 +18,7 @@ export default function Loja() {
   // const [foiAdicionado, setFoiAdicionado] = useState<boolean | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const { cart, addToCart, removeFromCart, updateQuantity, clearCart, /*totalItems,*/ totalPrice } = useCart();
+  const { cart, /*addToCart,*/ removeFromCart, updateQuantity, clearCart, /*totalItems,*/ totalPrice } = useCart();
 
 
 
@@ -33,10 +34,11 @@ export default function Loja() {
         if (!data) {
           throw new Error('Erro ao buscar produtos');
         }
+        console.log('data => ', data)
         // Adaptar os nomes dos campos da API para os nomes usados na aplicação
-        const produtosAdaptados: Product[] = data.map((item: Product) => ({
+        const produtosAdaptados: Product[] = data.map((item: ProductAPIResponse) => ({
           id: item.id,
-          name: item.name, // mudei aqui de title para name
+          name: item.title,
           price: item.price,
           description: item.description,
           image: item.image
@@ -72,15 +74,25 @@ export default function Loja() {
         <Header />
 
         <div className="w-full h-screen">
-          <img src={'/modelo-home.jpg'} alt="Lojas Paraibanas" className="object-cover w-full h-full  " />
+          <div className="relative w-full h-full">
+            <Image
+              src="/modelo-home.jpg"
+              alt="Lojas Paraibanas"
+              fill
+              priority
+              className="object-cover"
+              quality={85}
+              sizes="100vw"
+            />
+          </div>
         </div>
 
         {/* Produtos */}
-        <div className="w-4/5 mx-auto">
-          <div className="grid grid-cols-3 gap-10 ">
+        <div className="w-fit mx-auto">
+          <div className="grid grid-cols-4">
             {produtos.map((produto) => {
               return (
-                <ProductCard key={produto.id} produto={produto} addToCart={addToCart} />
+                <ProductCard key={produto.id} produto={produto} promocao={33} estrelas={4.3} precoAntigo={220.43434} favoritado={true} freteGratis={true} />
               )
             }
             )}
