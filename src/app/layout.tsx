@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import { CartProvider } from './contexts/CartContext'
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer";
 
 
 export const metadata: Metadata = {
-  title: "Modique",
-  description: "Loja que vende coisas",
+  title: "Salpatos",
+  description: "Loja de calçados",
 };
 
 export default function RootLayout({
@@ -17,11 +19,13 @@ export default function RootLayout({
   return (
     <CartProvider>
 
-      <html lang="en">
+      <html lang="pt-br">
         <body
           className={'antialiased'}
         >
+          <Header />
           {children}
+          <Footer />
         </body>
       </html >
     </CartProvider>

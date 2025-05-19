@@ -2,11 +2,13 @@
 
 import { useState } from 'react'
 import { FaRegHeart } from "react-icons/fa6";
-import { TbSquareLetterMFilled } from "react-icons/tb";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import InputDePesquisa from "./InputDePesquisa";
 import Entrar from "./Entrar";
 import SubHeader from './SubHeader';
+import Link from 'next/link';
+import Image from 'next/image';
+
 
 function Header() {
     const [entrarIsHovered, setEntrarIsHovered] = useState(false)
@@ -17,8 +19,17 @@ function Header() {
 
                 {/* Parte Esquerda */}
                 <ul className="flex gap-2 items-center">
-                    <TbSquareLetterMFilled className="text-5xl" />
-                    <h2 className="text-3xl">Modique</h2>
+                    <Link href="/" className="flex items-center gap-2">
+                        <Image 
+                            src="/logo.png" 
+                            alt="Logo" 
+                            width={80} 
+                            height={80}
+                            priority
+                            quality={90} 
+                        />
+                        <h2 className="text-3xl">Salpatos</h2>
+                    </Link>
                 </ul>
 
                 {/* Parte Meio */}

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useState } from 'react';
 
 // Tipo para os itens dos dropdowns
@@ -119,7 +120,7 @@ function SubHeader() {
 
 
     return (
-        <div className="flex items-center gap-10 py-2 text-gray-500 relative">
+        <div className="flex items-center gap-10 py-2 border-b border-gray-200 text-gray-500 relative">
             {/* Seção de CEP */}
             <div className="ml-[18%]">
                 Informe o seu CEP!
@@ -135,9 +136,11 @@ function SubHeader() {
                         onMouseLeave={() => setActiveDropdown(null)}
                     >
                         {/* Item principal da categoria */}
-                        <span className="cursor-pointer hover:text-gray-800 transition-colors py-3">
-                            {item}
-                        </span>
+                        <Link href={`/products`}>
+                            <span className="cursor-pointer hover:text-gray-800 transition-colors py-3">
+                                {item}
+                            </span>
+                        </Link>
 
                         {/* Dropdown - aparece quando o item está ativo */}
                         {activeDropdown === item && (
@@ -146,7 +149,6 @@ function SubHeader() {
                                     // Mapeia cada item da lista de categorias
                                     categorias.map(obj => (
                                         <ul
-                                            className="py-1 "
                                             key={obj.categoria}
                                         >
                                             {
@@ -156,10 +158,9 @@ function SubHeader() {
                                                         className=" w-4/5 mx-auto "
                                                         key={item}
                                                     >
-                                                        {<>
-                                                            {index === 0 && <h3 className='font-bold text-lg px-4 py-2'>{obj.categoria}</h3>}
-
-
+                                                        {/* nomes das subcategorias */}
+                                                        {index === 0 && <h3 className='font-bold text-lg px-4 py-2'>{obj.categoria}</h3>}
+                                                        <Link href={`/products?categoria`}>
                                                             <p
                                                                 className={`
                                                                         hover:bg-gray-100 cursor-pointer transition-colors text-md px-4 py-2
@@ -167,7 +168,7 @@ function SubHeader() {
                                                                 `}>
                                                                 {item}
                                                             </p>
-                                                        </>}
+                                                        </Link>
                                                     </li>;
                                                 }
                                                 )
