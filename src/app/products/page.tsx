@@ -96,6 +96,7 @@ function Products() {
                                         precoAntigo={Math.random() > 0.5 ? produto.price * 1.2 : null} 
                                         favoritado={Math.random() > 0.7} 
                                         freteGratis={Math.random() > 0.6} 
+                                        cores={['red', 'blue', 'green', 'yellow', 'purple']} 
                                     />
                                 ))}
                             </div>

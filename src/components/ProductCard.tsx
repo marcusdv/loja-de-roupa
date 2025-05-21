@@ -12,13 +12,11 @@ interface ProductCardProps {
     precoAntigo: number | null;
     favoritado: boolean;
     freteGratis: boolean;
+    cores: string[];
 }
 
-function ProductCard({ produto, promocao, estrelas, precoAntigo, favoritado, freteGratis }: ProductCardProps) {
-    
-    // Array de cores disponíveis (exemplo)
-    const coresDisponiveis = ['red', 'green', 'blue', 'white', 'gray'];
-    
+function ProductCard({ produto, promocao, estrelas, precoAntigo, favoritado, freteGratis, cores }: ProductCardProps) {
+   
     return (
         <div className="flex flex-col p-2 max-w-[330px] border border-gray-100 cursor-pointer group">
             {/* Imagem do produto e icone de favoritar */}
@@ -56,7 +54,7 @@ function ProductCard({ produto, promocao, estrelas, precoAntigo, favoritado, fre
                 <div className="flex gap-1 mt-1 items-center">
                     <span className="text-xs text-gray-500 mr-1">Cores:</span>
                     {/* exibe as 4 primeiras cores */}
-                    {coresDisponiveis.slice(0, 4).map((cor, i) => (
+                    {cores.slice(0, 4).map((cor, i) => (
                         <div 
                             key={i} 
                             className={`w-3 h-3 rounded-full border border-gray-300`} 
@@ -68,8 +66,8 @@ function ProductCard({ produto, promocao, estrelas, precoAntigo, favoritado, fre
                         ></div>
                     ))}
                     {/* se houver mais de 4 cores, exibe o numero de cores restantes */}
-                    {coresDisponiveis.length > 4 && (
-                        <span className="text-xs text-gray-500">+{coresDisponiveis.length - 4}</span>
+                    {cores.length > 4 && (
+                        <span className="text-xs text-gray-500">+{cores.length - 4}</span>
                     )}
                 </div>
                 {precoAntigo &&
