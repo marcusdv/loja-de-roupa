@@ -5,7 +5,7 @@ import { FaStar, FaStarHalf } from "react-icons/fa6";
 
 
 function ProductCard({ produto, favoritado }: { produto: Product, favoritado: boolean }) {
-    const { nome, preco, desconto, descricao, estrelas, preco_anterior, frete_gratis, cores } = produto;
+    const { nome, preco, desconto, marca, descricao, estrelas, preco_anterior, frete_gratis, cores } = produto;
 
     return (
         <div className="flex flex-col p-2 max-w-[300px] border border-gray-100 cursor-pointer group">
@@ -26,7 +26,7 @@ function ProductCard({ produto, favoritado }: { produto: Product, favoritado: bo
             }
 
             <div className='flex flex-col gap-0.5'>
-                <h3 className='text-sm text-gray-600 group-hover:underline mt-2'>{nome}</h3>
+                <h3 className='text-sm text-gray-600 group-hover:underline mt-2'>{nome} - {marca}</h3>
                 {estrelas && estrelas > 0 &&
                     <div className="flex gap-0.5">
                         {/* cria uma array com o numero de estrelas arredondado para baixo. ex: 4.3 -> 4 estrelas */}
