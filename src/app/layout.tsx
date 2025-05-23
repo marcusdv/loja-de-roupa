@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import { CartProvider } from './contexts/CartContext'
+// import { CartProvider } from './contexts/CartContext'
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 
@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <CartProvider>
+    // <CartProvider>
 
       <html lang="pt-br">
         <body
@@ -28,6 +28,6 @@ export default function RootLayout({
           <Footer />
         </body>
       </html >
-    </CartProvider>
+    // </CartProvider>
   );
 }
