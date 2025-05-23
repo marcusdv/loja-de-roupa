@@ -3,7 +3,7 @@ import "./globals.css";
 
 import { CartProvider } from './contexts/CartContext'
 import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer";
+import Footer from "@/components/Footer/Footer";
 
 
 export const metadata: Metadata = {

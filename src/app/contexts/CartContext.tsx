@@ -1,7 +1,6 @@
 'use client'
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-
 import { Product } from '../../types/types';
 
 type CartContextType = {
@@ -45,7 +44,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
             }
             return [...prevCart, { ...product, product, quantity: 1 }] // Se o produto não estiver no carrinho, adiciona-o com a quantidade 1
         })
-
     }
 
     // Remove um produto

@@ -4,23 +4,8 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'fakestoreapi.com',
+        hostname: 'placehold.co',
         pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'cdn.dummyjson.com',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'i.dummyjson.com',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'fakestoreapi.com',
-        pathname: '/img/**',
       }
     ],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
