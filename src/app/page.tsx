@@ -9,15 +9,14 @@ export default function Loja() {
     <>
       {/* Banner */}
       <div className="w-full h-screen">
-        <div className="relative w-full h-full">
+        <div className="relative w-full h-[600px]">
           <Image
-            src="/modelo-home.jpg"
-            alt="Modelo"
+            src="/banner-1.png"
+            alt="banner de promoção"
             fill
             priority
-            className="object-cover"
+            className="object-cover" 
             quality={85}
-            sizes="100vw"
           />
         </div>
       </div>
