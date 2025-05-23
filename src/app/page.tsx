@@ -9,7 +9,6 @@ export default function Loja() {
   const [bannerAtual, setBannerAtual] = useState(1);
   const { produtos, loading, error } = useProdutos();
 
-
   useEffect(() => {
     // Cria um novo intervalo sempre que bannerAtual mudar
     const interval = setInterval(() => {
@@ -99,13 +98,12 @@ export default function Loja() {
               ) : (
                 <div className="grid mt-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-fit mx-auto gap-4">
                   {
-                    produtos.map((produto, index) => {
-                      if (index === 3) return;
+                    produtos.slice(0, 4).map((produto, index) => {
                       return (
                         <ProductCard
                           key={produto.id}
                           produto={produto}
-                          favoritado={Math.random() > 0.6}
+                          favoritado={index % 3 === 2}
                         />
                       )
                     })}
