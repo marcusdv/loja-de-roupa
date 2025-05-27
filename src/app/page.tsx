@@ -20,12 +20,67 @@ export default function Loja() {
   }, [bannerAtual]); // Dependência no bannerAtual
 
 
+  const produtosNaTela = () => {
+    return (
+      <>
+        {/* Carregando */}
+        {
+          loading && (
+            <div className="flex justify-center items-center py-12">
+              <h2 className="text-2xl text-gray-600">Carregando produtos...</h2>
+            </div>
+          )
+        }
+
+
+        {/* Mensagem de erro */}
+        {
+          error && (
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
+              <p>{error}</p>
+            </div>
+          )
+        }
+
+        {/* Produtos */}
+        {
+          !loading && !error && (
+            <>
+              {produtos.length === 0 ? (
+                // Mensagem de nenhum produto encontrado
+                <p className="text-center py-8 text-gray-500">
+                  Nenhum produto encontrado.
+                </p>
+              ) : (
+                // Lista de produtos
+                <div className="grid mt-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-fit mx-auto gap-4">
+                  {
+                    produtos.slice(0, 4).map((produto, index) => {
+                      return (
+                        <ProductCard
+                          key={produto.id}
+                          produto={produto}
+                          favoritado={index % 3 === 2}
+                        />
+                      )
+                    })}
+                </div>
+              )}
+            </>
+          )
+        }
+        )
+      </>
+    )
+  }
+
   return (
     <>
       {/* Banner */}
       <div className="">
         <div className="relative w-full h-[600px] overflow-hidden">
           <div
+            // Animação do banner
             className="flex transition-transform duration-500 ease-in-out"
             style={{ transform: `translateX(-${(bannerAtual - 1) * 100}%)` }}
           >
@@ -65,6 +120,7 @@ export default function Loja() {
           <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
             {[1, 2, 3].map((numero) => (
               <button
+                // Animação das bolinhas
                 key={numero}
                 disabled={bannerAtual === numero}
                 className={`w-3 h-3 rounded-full  transition-colors ${bannerAtual === numero ? 'bg-white cursor-default' : 'bg-white/50 cursor-pointer'
@@ -76,41 +132,8 @@ export default function Loja() {
           </div>
         </div>
 
-        {loading && (
-          <div className="flex justify-center items-center py-12">
-            <h2 className="text-2xl text-gray-600">Carregando produtos...</h2>
-          </div>
-        )}
-
-        {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
-            <p>{error}</p>
-          </div>
-        )}
-
-        {
-          !loading && !error && (
-            <>
-              {produtos.length === 0 ? (
-                <p className="text-center py-8 text-gray-500">
-                  Nenhum produto encontrado.
-                </p>
-              ) : (
-                <div className="grid mt-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-fit mx-auto gap-4">
-                  {
-                    produtos.slice(0, 4).map((produto, index) => {
-                      return (
-                        <ProductCard
-                          key={produto.id}
-                          produto={produto}
-                          favoritado={index % 3 === 2}
-                        />
-                      )
-                    })}
-                </div>
-              )}
-            </>
-          )}
+        {/* Os 4 produtos que aparecem na tela */}
+        {produtosNaTela()}
       </div>
     </>
   );

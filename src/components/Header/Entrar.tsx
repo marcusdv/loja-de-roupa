@@ -2,15 +2,11 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { IoPersonOutline } from "react-icons/io5";
 
 function Entrar({ entrarIsHovered }: { entrarIsHovered: boolean }) {
-
-
-
     const entrarDropItems = [
         "Login",
         "Meus Pedidos",
         "Endereços",
     ]
-
 
     return (
         <>

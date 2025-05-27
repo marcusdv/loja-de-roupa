@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // Tipo para os itens dos dropdowns
 type DropdownItems = {
@@ -14,6 +14,12 @@ type categorias = {
 function SubHeader() {
     // Estado para controlar qual dropdown está ativo
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+    // Novo estado para controlar a visibilidade da animação
+    const [isAnimating, setIsAnimating] = useState<boolean>(false);
+    // Estado para controlar se o conteúdo do dropdown deve ser renderizado no DOM.
+    // Isso permite que a animação de saída ocorra antes que o elemento seja removido.
+    const [shouldRenderDropdown, setShouldRenderDropdown] = useState<string | null>(null);
+
 
     // Dados para os dropdowns - tipado com nosso tipo DropdownItems
     const dropdownItems: DropdownItems = {
@@ -118,6 +124,28 @@ function SubHeader() {
         }
     ]
 
+    // Hook useEffect para gerenciar as transições do dropdown
+    useEffect(() => {
+        let timer: NodeJS.Timeout;
+
+        if (activeDropdown) {
+            // Quando um dropdown é ativado (mouseEnter), renderiza o conteúdo imediatamente
+            setShouldRenderDropdown(activeDropdown);
+            // Pequeno atraso para garantir que o navegador aplique a opacidade inicial (0)
+            // antes de iniciar a transição para opacidade final (100) e o slide.
+            timer = setTimeout(() => setIsAnimating(true), 10);
+        } else {
+            // Quando o dropdown é desativado (mouseLeave), inicia a animação de saída.
+            setIsAnimating(false);
+            // Aguarda a duração da transição (300ms) antes de remover o conteúdo do DOM,
+            // garantindo que a animação de fade-out e slide-up seja completa.
+            timer = setTimeout(() => setShouldRenderDropdown(null), 300);
+        }
+
+        // Função de limpeza para evitar vazamento de memória se o componente for desmontado
+        // ou o activeDropdown mudar novamente antes do timeout.
+        return () => clearTimeout(timer);
+    }, [activeDropdown]); // O efeito é re-executado sempre que activeDropdown muda
 
     return (
         <div className="flex items-center gap-10 py-2 border-b border-gray-200 text-gray-500 relative">
@@ -127,24 +155,33 @@ function SubHeader() {
             </div>
 
             {/* Lista de categorias com dropdowns */}
-            <ul className="flex gap-8 items-center ">
+            <ul className="flex items-center ">
                 {Object.keys(dropdownItems).map((item) => (
                     <li
                         key={item}
-                        className=" group "
+                        // 'group' permite que estilos de 'group-hover' sejam aplicados aos filhos
+                        className="group"
+                        // Eventos para controlar o estado do dropdown ao passar o mouse
                         onMouseEnter={() => setActiveDropdown(item)}
                         onMouseLeave={() => setActiveDropdown(null)}
                     >
                         {/* Item principal da categoria */}
                         <Link href={`/products`}>
-                            <span className="cursor-pointer hover:text-gray-800 transition-colors py-3">
+                            <span className="cursor-pointer hover:text-gray-800 transition-colors py-3 px-4">
                                 {item}
                             </span>
                         </Link>
 
-                        {/* Dropdown - aparece quando o item está ativo */}
-                        {activeDropdown === item && (
-                            <div className="absolute flex justify-center left-0 top-9 mt-1 w-full bg-white shadow-lg rounded-md z-50 border border-gray-200">
+                        {/* Dropdown: Renderizado apenas se shouldRenderDropdown corresponder ao item atual.
+                            A classe 'opacity-0' e 'translate-y-[30px]' (subindo de baixo) ou 'translate-y-[-10px]' (descendo de cima)
+                            são aplicadas inicialmente e transicionam para 'opacity-100' e 'translate-y-0'.
+                            'pointer-events-none' desabilita interações enquanto o dropdown está transparente. */}
+                        {shouldRenderDropdown === item && (
+                            <div className={`
+                                absolute flex justify-center left-0 top-9 mt-1 w-full bg-white shadow-lg rounded-md z-50 border border-gray-200
+                                transition-all duration-300 ease-out
+                                ${isAnimating && activeDropdown === item ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[30px] pointer-events-none'}
+                            `}>
                                 {
                                     // Mapeia cada item da lista de categorias
                                     categorias.map(obj => (

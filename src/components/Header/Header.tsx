@@ -15,18 +15,18 @@ function Header() {
 
     return (
         <>
-            <header className="flex py-4 justify-center gap-16 items-center bg-black text-white">
+            <header className="fixed top-0 left-0 right-0 z-50 flex py-1 justify-center gap-16 items-center bg-black text-white">
 
                 {/* Parte Esquerda */}
                 <ul className="flex gap-2 items-center">
                     <Link href="/" className="flex items-center gap-2">
-                        <Image 
-                            src="/logo.png" 
-                            alt="Logo" 
-                            width={80} 
-                            height={80}
+                        <Image
+                            src="/logo.png"
+                            alt="Logo"
+                            width={55}
+                            height={55}
                             priority
-                            quality={90} 
+                            quality={90}
                         />
                         <h2 className="text-3xl">Salpatos</h2>
                     </Link>
@@ -55,7 +55,9 @@ function Header() {
                     </li>
                 </ul>
             </header>
-            <SubHeader />
+            <div className="pt-[65px]" >
+                <SubHeader />
+            </div>
         </>
     )
 }
