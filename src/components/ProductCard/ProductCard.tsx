@@ -32,7 +32,7 @@ function ProductCard({ produto, favoritado }: { produto: Product, favoritado: bo
 
 
     return (
-        <div className="flex flex-col p-2 max-w-[300px] border border-gray-100 cursor-pointer group">
+        <div className="flex flex-col p-2 max-w-[300px] border border-gray-100 cursor-pointer group hover:border-slate-300 hover:rounded-sm">
 
 
             <div className="relative">
