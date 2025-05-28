@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { useProdutos } from "@/hooks/useBuscarTodosProdutos";
 import ProductCard from '@/components/ProductCard/ProductCard';
+import Carousel from '@/components/Carousel/Carousel';
 
 export default function Loja() {
   const [bannerAtual, setBannerAtual] = useState(1);
@@ -131,6 +132,39 @@ export default function Loja() {
             ))}
           </div>
         </div>
+
+        {/* Cadastrar email para novidades */}
+        <div className='flex flex-col gap-4 border border-gray-400 p-10'>
+          <h2 className='text-2xl font-bold'>Cadastre-se para receber ofertas e descontos exclusivos</h2>
+          <ul className='flex gap-4'>
+            <li><input type="text" placeholder='Nome' className='' /></li>
+            <li><input type="text" placeholder='Digite seu e-mail' /></li>
+            <li><input type="text" placeholder='Categoria' /></li>
+          </ul>
+          <p>
+            <input type="checkbox" name="concordo com os termos" id="concorco_politica_privacidade" />
+            Concordo em receber <b>ofertas e novidades</b> da loja Salpatos por <b>e-mail</b> conforme a <span className='text-orange-400'>Política de privacidade</span>
+          </p>
+          <button className='rounded-lg text-white bg-orange-400 py-2 text-2xl'>Enviar</button>
+        </div>
+
+        {/* Quadrados de anuncios de promoções de calçados */}
+        <div>
+          <ul>
+            <li>
+              {/* <Image alt='banner de promocao de calçados' src='#' /> */}
+              <div className='grid grid-cols-2 grid-rows-2'>
+                <h3>Tênis</h3>
+                <p>a partir de <span>R$99</span></p>
+                <button className='bg-transparent text-white border border-white  py-2'>CONFIRA</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        {/* Navegação carousel por categorias */}
+        <Carousel />
+
 
         {/* Os 4 produtos que aparecem na tela */}
         {produtosNaTela()}

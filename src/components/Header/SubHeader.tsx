@@ -23,106 +23,109 @@ function SubHeader() {
 
     // Dados para os dropdowns - tipado com nosso tipo DropdownItems
     const dropdownItems: DropdownItems = {
-        Feminino: ['Vestidos', 'Blusas', 'Calças', 'Saias', 'Casacos'],
-        Masculino: ['Camisetas', 'Calças', 'Camisas', 'Bermudas', 'Blazers'],
-        Infantil: ['Bebê', 'Menina', 'Menino', 'Calçados', 'Acessórios'],
-        Marcas: ['Nike', 'Adidas', 'Zara', 'H&M', 'Louis Vuitton'],
-        Beleza: ['Perfumes', 'Maquiagem', 'Cuidados com a Pele', 'Cabelos', 'Unhas'],
-        Esporte: ['Tênis', 'Roupas', 'Acessórios', 'Equipamentos', 'Suplementos'],
-        Ofertas: ['Promoções', 'Liquidação', 'Black Friday', 'Outlet', 'Cupons']
+        Feminino: ['Tênis', 'Sandálias', 'Botas', 'Scarpins', 'Rasteiras'],
+        Masculino: ['Tênis', 'Sapatos Sociais', 'Botas', 'Chinelos', 'Mocassins'],
+        Infantil: ['Tênis Infantil', 'Sandálias', 'Sapatilhas', 'Botinhas', 'Chinelos'],
+        Marcas: ['Nike', 'Adidas', 'Puma', 'Vans', 'Asics'],
+        Estilos: ['Casual', 'Esportivo', 'Social', 'Trilha', 'Running'],
+        Lançamentos: ['Novidades', 'Mais Vendidos', 'Coleção Nova', 'Edição Limitada', 'Exclusivos'],
+        Ofertas: ['Promoções', 'Descontos Progressivos', 'Frete Grátis', 'Outlet', 'Cupons']
     };
 
     const categorias: categorias[] = [
         {
-            categoria: "Calçados",
+            categoria: "Calçados Casuais",
             itens: [
-                "Botas",
-                "Chinelos",
+                "Tênis casual",
                 "Mocassins",
-                "Rasteiras",
-                "Sandálias",
-                "Sapatilhas",
+                "Sapatênis",
+                "Slip-ons",
+                "Dockside",
+                "Alpargatas",
+                "Sapatos Oxford",
+                "Tênis plataforma",
+                "Ver todos Casuais"
+            ]
+        },
+        {
+            categoria: "Calçados Sociais",
+            itens: [
+                "Sapatos sociais",
                 "Scarpins",
-                "Tênis",
-                "Ver tudo de Calçados"
+                "Sapatos Monk Strap",
+                "Brogues",
+                "Loafers",
+                "Peep toes",
+                "Sapatos Derby",
+                "Sapatos envernizados",
+                "Ver todos Sociais"
             ]
         },
         {
-            categoria: "Roupas",
+            categoria: "Calçados Esportivos",
             itens: [
-                "Blusas e Camisetas",
-                "Calças",
-                "Calças Jeans",
-                "Camisas",
-                "Jaquetas e Casacos",
-                "Macacões",
-                "Moda Praia",
-                "Moletons",
-                "Suéteres e Cardigans",
-                "Vestidos",
-                "Ver tudo de Roupas"
+                "Tênis de corrida",
+                "Tênis para academia",
+                "Tênis para caminhada",
+                "Tênis de basquete",
+                "Chuteiras",
+                "Tênis de skate",
+                "Tênis esportivos infantis",
+                "Tênis com amortecimento",
+                "Ver todos Esportivos"
             ]
         },
         {
-            categoria: "Acessórios",
+            categoria: "Sandálias e Rasteiras",
             itens: [
-                "Bolsas",
-                "Carteiras",
-                "Cintos",
-                "Mochilas",
-                "Óculos",
-                "Relógios",
-                "Ver tudo de Acessórios"
+                "Sandálias plataforma",
+                "Rasteirinhas",
+                "Anabelas",
+                "Papetes",
+                "Tamancos",
+                "Slide",
+                "Gladiadoras",
+                "Sandálias de tiras",
+                "Ver todas Sandálias"
             ]
         },
         {
-            categoria: "Moda Íntima",
+            categoria: "Botas",
             itens: [
-                "Calcinhas",
-                "Kits",
-                "Meias",
-                "Pijamas e Camisolas",
-                "Sutiãs",
-                "Ver tudo de Moda Íntima"
+                "Botas cano curto",
+                "Botas cano longo",
+                "Coturnos",
+                "Chelsea boots",
+                "Galochas",
+                "Botas over the knee",
+                "Botas tratoradas",
+                "Botas texanas",
+                "Ver todas Botas"
             ]
         },
         {
-            categoria: "Esporte",
+            categoria: "Infantil",
             itens: [
-                "Bermudas e shorts",
-                "Bolsas e mochilas",
-                "Bonés",
-                "Calças e Leggings",
-                "Camisetas",
-                "Jaquetas e Moletons",
-                "Regatas",
-                "Tênis esportivo",
-                "Tops",
-                "Ver tudo de Esporte"
-            ]
-        },
-        {
-            categoria: "Plus Size",
-            itens: [
-                "Ver tudo de Plus Size"
+                "Ver todos Calçados Infantis"
             ]
         },
         {
             categoria: "Marcas",
             itens: [
+                "Nike",
+                "Adidas",
+                "Puma",
+                "Vans",
+                "Asics",
+                "Olympikus",
+                "Mizuno",
                 "Beira Rio",
-                "Colcci",
-                "Farm",
-                "Hering",
-                "Lança Perfume",
-                "Modare",
-                "Ramarim",
-                "Santa Lolla",
-                "Sawary",
-                "Vizzano"
+                "Vizzano",
+                "Dakota"
             ]
         }
     ]
+
 
     // Hook useEffect para gerenciar as transições do dropdown
     useEffect(() => {
