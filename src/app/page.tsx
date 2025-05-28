@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { useProdutos } from "@/hooks/useBuscarTodosProdutos";
 import ProductCard from '@/components/ProductCard/ProductCard';
-import Carousel from '@/components/Carousel/Carousel';
+import CarouselComponent from '@/components/CarouselComponent/CarouselComponent';
 
 export default function Loja() {
   const [bannerAtual, setBannerAtual] = useState(1);
@@ -163,8 +163,10 @@ export default function Loja() {
         </div>
 
         {/* Navegação carousel por categorias */}
-        <Carousel />
-
+        <div className='flex flex-col justify-center items-center'>
+          <h2 className='text-4xl mb-4'>Navegue pelas categorias</h2>
+          <CarouselComponent />
+        </div>
 
         {/* Os 4 produtos que aparecem na tela */}
         {produtosNaTela()}
