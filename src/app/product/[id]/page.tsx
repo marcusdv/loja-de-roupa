@@ -4,8 +4,8 @@ import { translatedForBackground } from "@/utils/translateColor";
 import Image from "next/image";
 
 
-export default async function ProductPage({ params, }: { params: { id: string } }) {
-    const id = params.id;
+export default async function Product({ params, }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
 
     const { data: produto, error } = await supabase
         .from("produtos")
