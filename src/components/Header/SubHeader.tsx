@@ -151,19 +151,19 @@ function SubHeader() {
     }, [activeDropdown]); // O efeito é re-executado sempre que activeDropdown muda
 
     return (
-        <div className="flex items-center gap-10 py-2 border-b border-gray-200 text-gray-500 relative">
+        <div className="flex flex-col md:flex-row md:items-center justify-center gap:2 md:gap-4 py-2 border-b border-gray-200 text-gray-500 relative">
             {/* Seção de CEP */}
-            <div className="ml-[18%]">
+            <div className="whitespace-nowrap hidden lg:block">
                 Informe o seu CEP!
             </div>
 
             {/* Lista de categorias com dropdowns */}
-            <ul className="flex items-center ">
+            <ul className="flex flex-col md:flex-row  md:items-center ">
                 {Object.keys(dropdownItems).map((item) => (
                     <li
                         key={item}
                         // 'group' permite que estilos de 'group-hover' sejam aplicados aos filhos
-                        className="group"
+                        className="group text-xl md:text-md lg:text-lg"
                         // Eventos para controlar o estado do dropdown ao passar o mouse
                         onMouseEnter={() => setActiveDropdown(item)}
                         onMouseLeave={() => setActiveDropdown(null)}
@@ -181,7 +181,7 @@ function SubHeader() {
                             'pointer-events-none' desabilita interações enquanto o dropdown está transparente. */}
                         {shouldRenderDropdown === item && (
                             <div className={`
-                                absolute flex justify-center left-0 top-9 mt-1 w-full bg-white shadow-lg rounded-md z-50 border border-gray-200
+                                absolute hidden md:flex justify-center left-0 top-9 mt-1 w-full bg-white shadow-lg rounded-md z-50 border border-gray-200
                                 transition-all duration-300 ease-out
                                 ${isAnimating && activeDropdown === item ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[30px] pointer-events-none'}
                             `}>
@@ -195,7 +195,7 @@ function SubHeader() {
                                                 // Mapeia a array itens dentro de cara categoria
                                                 obj.itens.map((item, index) => {
                                                     return <li
-                                                        className=" w-4/5 mx-auto "
+                                                        className=" w-4/5 mx-auto"
                                                         key={item}
                                                     >
                                                         {/* nomes das subcategorias */}

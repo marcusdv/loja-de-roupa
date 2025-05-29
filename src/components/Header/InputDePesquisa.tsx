@@ -36,7 +36,7 @@ function InputDePesquisa() {
 
     return (
         <div
-            className="w-4/12 relative"
+            className="w-full relative"
             ref={pesquisarRef}
         >
             <input
