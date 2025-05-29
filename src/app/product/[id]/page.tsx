@@ -3,17 +3,14 @@ import { supabase } from "@/lib/supabase";
 import { translatedForBackground } from "@/utils/translateColor";
 import Image from "next/image";
 
-type Props = {
-    params: { id: string };
-}
 
-export default async function ProductPage({ params }: Props) {
-    const { id } = params;
+export default async function ProductPage({ params, }: { params: { id: string } }) {
+    const id = params.id;
 
     const { data: produto, error } = await supabase
         .from("produtos")
         .select("*")
-        .eq("id", id)
+        .eq("id", parseInt(id))
         .single();
 
     if (error || !produto) {
