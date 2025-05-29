@@ -12,7 +12,7 @@ export default function Loja() {
 
   const produtosNaTela = () => {
     return (
-      <>
+      <div>
         {/* Carregando */}
         {
           loading && (
@@ -59,7 +59,7 @@ export default function Loja() {
             </>
           )
         }
-      </>
+      </div>
     )
   }
 

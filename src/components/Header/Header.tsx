@@ -51,7 +51,7 @@ function Header() {
                     </li>
                     <li className='cursor-pointer relative'>
                         <HiOutlineShoppingBag className="inline text-4xl" />
-                        <span className='absolute top-[18px] right-[-5px] bg-white text-black rounded-full w-[18px] h-[18px] flex justify-center items-center text-xs '>20</span>
+                        <span className='absolute top-[18px] right-[-5px] bg-white text-black rounded-full w-[18px] h-[18px] flex justify-center items-center text-xs '>0</span>
                     </li>
                 </ul>
             </header>

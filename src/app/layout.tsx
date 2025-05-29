@@ -19,15 +19,15 @@ export default function RootLayout({
   return (
     // <CartProvider>
 
-      <html lang="pt-br">
-        <body
-          className={'antialiased'}
-        >
-          <Header />
-          {children}
-          <Footer />
-        </body>
-      </html >
+    <html lang="pt-br">
+      <body
+        className={'antialiased flex flex-col min-h-screen'}
+      >
+        <Header />
+        {children}
+        <Footer />
+      </body>
+    </html >
     // </CartProvider>
   );
 }

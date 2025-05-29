@@ -15,17 +15,15 @@ export default async function ProductPage({ params }: { params: { id: string } }
     }
 
     return (
-        <div className="max-w-5xl mx-auto px-4 py-10 grid md:grid-cols- gap-10">
-            {/* Imagem do produto */}
-            <div className="flex justify-center items-center bg-gray-50 rounded-lg p-6">
-                <Image
-                    src={"https://placehold.co/400x400.png"}
-                    alt={produto.nome}
-                    width={400}
-                    height={400}
-                    className="object-contain w-full h-auto max-h-[400px]"
-                />
+        <div className="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-10">
+
+            <div className="grid md:grid-cols-2 md:col-span-2 gap-4">
+                <div><Image src={"https://placehold.co/500x500.png"} alt={produto.nome} width={500} height={500} className="object-contain w-full h-auto max-h-[500px]" /></div>
+                <div><Image src={"https://placehold.co/500x500.png"} alt={produto.nome} width={500} height={500} className="object-contain w-full h-auto max-h-[500px]" /></div>
+                <div><Image src={"https://placehold.co/500x500.png"} alt={produto.nome} width={500} height={500} className="object-contain w-full h-auto max-h-[500px]" /></div>
+                <div><Image src={"https://placehold.co/500x500.png"} alt={produto.nome} width={500} height={500} className="object-contain w-full h-auto max-h-[500px]" /></div>
             </div>
+
 
             {/* Informações do produto */}
             <div className="flex flex-col gap-4">

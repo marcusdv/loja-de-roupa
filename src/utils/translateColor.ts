@@ -3,7 +3,7 @@
 /**
  * A normaliza o  feita em 3 etapas:
  * 1. Decompor caracteres acentuados em sua forma base.
- *    Exemplo: "vermelh " vira "vermelho".
+ *    Exemplo: "vermelhô" vira "vermelho".
  * 2. Remover acentos.
  *    Exemplo: "vermelho" vira "vermelho".
  * 3. Converter para letras min sculas.
@@ -55,6 +55,15 @@ export function translateColors(coresPt: string[]): string[] {
 
 
 
+/**
+ * Traduz uma cor em português para sua classe de estilo de background no Tailwind CSS.
+ *
+ * Exemplo:
+ *   translatedForBackground("vermelho") => "bg-red-500"
+ *
+ * @param {string} cor - A cor em português que deseja traduzir.
+ * @returns {string} A classe de estilo de background no Tailwind CSS.
+ */
 export function translatedForBackground(cor: string): string {
   
   const bgColors: Record<string, string> = {

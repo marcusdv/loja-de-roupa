@@ -2,7 +2,7 @@ import { TiSocialInstagram, TiSocialFacebook, TiSocialLinkedin, TiSocialTwitter 
 
 function Footer() {
     return (
-        <footer className=" text-gray-400 text-xs pt-12 bg-gray-900 mt-5">
+        <footer className=" text-gray-400 text-xs pt-12 bg-gray-900 mt-5 pb-10 flex-grow">
             <div className="w-2/4 mx-auto flex justify-between">
 
                 {/* Primeira coluna */}
