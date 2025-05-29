@@ -163,7 +163,7 @@ function SubHeader() {
                     <li
                         key={item}
                         // 'group' permite que estilos de 'group-hover' sejam aplicados aos filhos
-                        className="group text-xl md:text-md lg:text-lg"
+                        className="group text-xl md:text-md"
                         // Eventos para controlar o estado do dropdown ao passar o mouse
                         onMouseEnter={() => setActiveDropdown(item)}
                         onMouseLeave={() => setActiveDropdown(null)}

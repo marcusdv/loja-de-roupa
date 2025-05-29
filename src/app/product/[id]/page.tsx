@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default async function ProductPage({ params }: { params: { id: string } }) {
     // Aguarde `params` resolver e destruture o `id`
-    const { id } = await params;
+    const { id } = params;
 
     const { data: produto, error } = await supabase
         .from("produtos")
