@@ -4,11 +4,10 @@ import { translatedForBackground } from "@/utils/translateColor";
 import Image from "next/image";
 
 type Props = {
-    params: { id: number };
+    params: { id: string };
 }
 
 export default async function ProductPage({ params }: Props) {
-    // Aguarde `params` resolver e destruture o `id`
     const { id } = params;
 
     const { data: produto, error } = await supabase
