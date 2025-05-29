@@ -1,3 +1,26 @@
+
+
+/**
+ * A normaliza o  feita em 3 etapas:
+ * 1. Decompor caracteres acentuados em sua forma base.
+ *    Exemplo: "vermelh " vira "vermelho".
+ * 2. Remover acentos.
+ *    Exemplo: "vermelho" vira "vermelho".
+ * 3. Converter para letras min sculas.
+ *    Exemplo: "VERMELHO" vira "vermelho".
+ *
+ * @param {string} cor - A string de cor que deseja normalizar.
+ * @returns {string} A string de cor normalizada.
+ */
+
+function normalizeColor(cor: string): string {
+  return cor
+    .normalize("NFD")                // decompor caracteres acentuados
+    .replace(/[\u0300-\u036f]/g, "") // remover acentos
+    .toLowerCase()
+    .trim();
+}
+
 /**
  * Traduz uma lista de cores em português para suas versões em inglês.
  *
@@ -27,5 +50,31 @@ export function translateColors(coresPt: string[]): string[] {
   };
 
   // Mapeia cada cor da lista usando o dicionário; se não encontrar, retorna "transparent"
-  return coresPt.map((cor) => mapaCores[cor.toLowerCase()] || "transparent");
+  return coresPt.map((cor) => mapaCores[normalizeColor(cor)] || "transparent");
+}
+
+
+
+export function translatedForBackground(cor: string): string {
+  
+  const bgColors: Record<string, string> = {
+        preto: "bg-black",
+        branco: "bg-white",
+        vermelho: "bg-red-500",
+        azul: "bg-blue-500",
+        verde: "bg-green-500",
+        amarelo: "bg-yellow-500",
+        cinza: "bg-gray-500",
+        rosa: "bg-pink-500",
+        roxo: "bg-purple-500",
+        laranja: "bg-orange-500",
+        marrom: "bg-orange-900",
+        bege: "bg-yellow-100",
+        dourado: "bg-yellow-300",
+        prateado: "bg-gray-300",
+    };
+
+    console.log(normalizeColor("Róxo"))
+
+    return bgColors[normalizeColor(cor)] || "bg-transparent";
 }
