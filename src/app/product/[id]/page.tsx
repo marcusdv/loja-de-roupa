@@ -3,7 +3,7 @@ import { supabase } from "@/lib/supabase";
 import { translatedForBackground } from "@/utils/translateColor";
 import Image from "next/image";
 
-export default async function ProductPage({ params }: { params: { id: string } }) {
+export default async function ProductPage({ params }: { params: { id: number } }) {
     // Aguarde `params` resolver e destruture o `id`
     const { id } = params;
 
