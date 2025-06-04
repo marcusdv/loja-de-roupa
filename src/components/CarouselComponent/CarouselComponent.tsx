@@ -21,13 +21,13 @@ export default function CarouselComponent() {
 
   return (
     // 50% on small screens and 33% on larger screens.
-    <div>
+    <div className='max-w-screen'>
       <Carousel
         opts={{
           align: "start",
           loop: true,
         }}
-        className="w-full max-w-3/6 md:max-w-3/4  mx-auto"
+        className="max-w-8/12 md:max-w-3/4  mx-auto flex flex-col gap-4"
       >
         <CarouselContent>
           {categorias.map((categoria, index) => (

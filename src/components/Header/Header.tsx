@@ -15,9 +15,10 @@ function Header() {
     const [entrarIsHovered, setEntrarIsHovered] = useState(false)
     const [hamburguerIsOpen, setHamburguerIsOpen] = useState(false)
 
+
     return (
         <>
-            <header className="fixed top-0 left-0 right-0 z-50 flex py-1 justify-center gap-16 items-center bg-black text-white">
+            <header className="fixed top-0 left-0 right-0 z-50 flex py-1 justify-between px-4 md:px-0 md:justify-center gap-16 items-center bg-black text-white">
 
                 {/* Parte Esquerda */}
                 <ul className="flex gap-2 items-center">
@@ -111,11 +112,7 @@ function Header() {
                             </div>
                         </div>
                     </aside>
-                )
-
-                }
-
-
+                )}
 
             </header>
             <div className="hidden md:block pt-[65px]">
@@ -124,7 +121,6 @@ function Header() {
 
 
         </>
-
     )
 }
 

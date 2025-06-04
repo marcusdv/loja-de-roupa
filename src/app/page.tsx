@@ -43,7 +43,7 @@ export default function Loja() {
                 </p>
               ) : (
                 // Lista de produtos
-                <div className="grid mt-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-fit mx-auto gap-4">
+                <div className="grid mt-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 md:gap-10 lg:grid-cols-4 w-fit mx-auto gap-4">
                   {
                     produtos.slice(0, 4).map((produto, index) => {
                       return (
@@ -87,8 +87,8 @@ export default function Loja() {
         </div> */}
 
         {/* Navegação carousel por categorias */}
-        <div className='flex flex-col justify-center items-center'>
-          <h2 className='text-4xl mb-4'>Navegue pelas categorias</h2>
+        <div className='flex flex-col justify-center w-screen items-center'>
+          <h2 className='text-2xl md:text-4xl mb-4'>Navegue pelas categorias</h2>
           <CarouselComponent />
         </div>
 

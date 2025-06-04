@@ -24,7 +24,7 @@ export default function MainBanner() {
                 className="flex transition-transform duration-500 ease-in-out"
                 style={{ transform: `translateX(-${(bannerAtual - 1) * 100}%)` }}
             >
-                <div className="min-w-full relative h-[600px]">
+                <div className="min-w-full relative h-[600px] ">
                     <Image
                         src="/banner-1.png"
                         alt="banner de promoção 1"
