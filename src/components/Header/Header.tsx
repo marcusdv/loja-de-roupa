@@ -17,8 +17,8 @@ function Header() {
 
 
     return (
-        <>
-            <header className="fixed top-0 left-0 right-0 z-50 flex py-1 justify-between px-4 md:px-0 md:justify-center gap-16 items-center bg-black text-white">
+        <header className='max-w-screen'>
+            <div className="fixed max-w-screen top-0 left-0 right-0 z-50 flex py-1 justify-between px-4 md:px-0 md:justify-center gap-16 items-center bg-black text-white">
 
                 {/* Parte Esquerda */}
                 <ul className="flex gap-2 items-center">
@@ -95,32 +95,42 @@ function Header() {
                             <InputDePesquisa />
 
                             <ul className="space-y-4 text-lg font-medium">
-                                <li className="flex items-center gap-2"><FaRegHeart className="text-2xl" /> Lista de Desejos</li>
                                 <li
+                                    className="flex items-center gap-2"
+                                    onClick={() => setHamburguerIsOpen(false)}
+                                >
+                                    <FaRegHeart className="text-2xl" />
+                                    Lista de Desejos
+                                </li>
+                                <li
+                                    onClick={() => setHamburguerIsOpen(false)}
                                 >
                                     <Entrar entrarIsHovered={false} />
                                 </li>
-                                <li className="flex items-center gap-2">
+                                <li
+                                    className="flex items-center gap-2"
+                                    onClick={() => setHamburguerIsOpen(false)}
+                                >
                                     <HiOutlineShoppingBag className="text-2xl" />
                                     <span className="relative ">Carrinho<span className='absolute -bottom-0 -left-5 bg-white text-black rounded-full w-4 h-4 flex items-center justify-center text-xs'>0</span></span>
                                 </li>
                             </ul>
 
                             {/* Aqui é o SubHeader também em mobile */}
-                            <div className="pt-6 border-t border-gray-700">
+                            <div className="pt-6 border-t border-gray-700" >
                                 <SubHeader />
                             </div>
                         </div>
                     </aside>
                 )}
 
-            </header>
-            <div className="hidden md:block pt-[65px]">
+            </div>
+            <div className=" hidden md:block pt-[65px]">
                 <SubHeader />
             </div>
 
 
-        </>
+        </header>
     )
 }
 

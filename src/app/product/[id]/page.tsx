@@ -18,9 +18,9 @@ export default async function Product({ params, }: { params: Promise<{ id: strin
     }
 
     return (
-        <div className="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-10">
+        <div className="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-10 mt-10">
 
-            <div className="grid md:grid-cols-2 md:col-span-2 gap-4">
+            <div className="grid grid-cols-2 md:col-span-2 gap-4">
                 <div><Image src={"https://placehold.co/500x500.png"} alt={produto.nome} width={500} height={500} className="object-contain w-full h-auto max-h-[500px]" /></div>
                 <div><Image src={"https://placehold.co/500x500.png"} alt={produto.nome} width={500} height={500} className="object-contain w-full h-auto max-h-[500px]" /></div>
                 <div><Image src={"https://placehold.co/500x500.png"} alt={produto.nome} width={500} height={500} className="object-contain w-full h-auto max-h-[500px]" /></div>

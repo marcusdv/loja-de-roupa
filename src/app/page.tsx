@@ -22,7 +22,6 @@ export default function Loja() {
           )
         }
 
-
         {/* Mensagem de erro */}
         {
           error && (
@@ -43,7 +42,7 @@ export default function Loja() {
                 </p>
               ) : (
                 // Lista de produtos
-                <div className="grid mt-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 md:gap-10 lg:grid-cols-4 w-fit mx-auto gap-4">
+                <div className="grid mt-6 grid-cols-2 px-4 md:gap-10 lg:grid-cols-4 w-fit mx-auto gap-4">
                   {
                     produtos.slice(0, 4).map((produto, index) => {
                       return (
@@ -71,20 +70,6 @@ export default function Loja() {
 
         {/* Cadastrar email para novidades */}
         <EmailForm />
-
-        {/* Quadrados de anuncios de promoções de calçados */}
-        {/* <div>
-          <ul>
-            <li>
-              {/* <Image alt='banner de promocao de calçados' src='#' /> */}
-        {/* <div className='grid grid-cols-2 grid-rows-2'> */}
-        {/* <h3>Tênis</h3>
-                <p>a partir de <span>R$99</span></p>
-                <button className='bg-transparent text-white border border-white  py-2'>CONFIRA</button>
-              </div>
-            </li>
-          </ul>
-        </div> */}
 
         {/* Navegação carousel por categorias */}
         <div className='flex flex-col justify-center w-screen items-center'>

@@ -151,7 +151,7 @@ function SubHeader() {
     }, [activeDropdown]); // O efeito é re-executado sempre que activeDropdown muda
 
     return (
-        <div className="flex flex-col md:flex-row md:items-center justify-center gap:2 md:gap-4 py-2 border-b border-gray-200 text-gray-500 relative">
+        <div className="flex flex-col md:flex-row md:items-center justify-center gap-2 md:gap-4 py-2 border-b border-gray-200 text-gray-500 relative">
             {/* Seção de CEP */}
             <div className="whitespace-nowrap hidden lg:block">
                 Informe o seu CEP!
@@ -163,7 +163,7 @@ function SubHeader() {
                     <li
                         key={item}
                         // 'group' permite que estilos de 'group-hover' sejam aplicados aos filhos
-                        className="group text-xl md:text-md"
+                        className="group md:text-md"
                         // Eventos para controlar o estado do dropdown ao passar o mouse
                         onMouseEnter={() => setActiveDropdown(item)}
                         onMouseLeave={() => setActiveDropdown(null)}

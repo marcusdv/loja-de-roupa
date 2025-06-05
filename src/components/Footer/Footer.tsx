@@ -3,7 +3,7 @@ import { TiSocialInstagram, TiSocialFacebook, TiSocialLinkedin, TiSocialTwitter 
 function Footer() {
     return (
         <footer className=" text-gray-400 text-xs pt-12 bg-gray-900 mt-5 pb-10 flex-grow">
-            <div className="w-10/12 md:w-2/4 mx-auto flex justify-between text-xs flex-wrap md:flex-nowrap gap-4 md:gap-0">
+            <div className="w-10/12 md:w-3/4 lg:w-2/4 mx-auto flex justify-between text-xs flex-wrap md:flex-nowrap gap-4 md:gap-0">
 
                 {/* Primeira coluna */}
                 <div className="flex flex-col gap-2">

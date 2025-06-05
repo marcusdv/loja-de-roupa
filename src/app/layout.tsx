@@ -21,7 +21,7 @@ export default function RootLayout({
 
     <html lang="pt-br">
       <body
-        className={'antialiased flex flex-col min-h-screen'}
+        className={'antialiased flex flex-col min-h-screen overflow-x-hidden bg-gray-100'}
       >
         <Header />
         {children}
