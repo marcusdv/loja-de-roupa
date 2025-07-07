@@ -13,7 +13,7 @@ function Entrar({ entrarIsHovered }: { entrarIsHovered: boolean }) {
         <>
             {/* Icone de pessoa */}
 
-            <ul className=" flex gap-1">
+            <ul className="flex gap-1">
                 <Link href="/login" className="flex items-center gap-1" >
                     <IoPersonOutline className="inline text-3xl" />
                     <p className="hidden lg:block">Login</p>
@@ -40,7 +40,7 @@ function Entrar({ entrarIsHovered }: { entrarIsHovered: boolean }) {
 
                 {/* dropdown do entrar */}
                 {entrarIsHovered && entrarDropItems.length > 0 && (
-                    <div className="absolute z-10 w-full top-full bg-white border border-gray-200 rounded-md shadow-lg transition-all duration-200 text-black min-w-fit">
+                    <div className="absolute right-0 z-10 w-full top-full bg-white border border-gray-200 rounded-md shadow-lg transition-all duration-200 text-black min-w-fit">
                         <ul className="py-1">
                             {entrarDropItems.map((item, index) => (
                                 <Link href={item.link} key={index} className="">

@@ -18,39 +18,39 @@ export default function MainBanner() {
 
 
     return (
-        <div className="relative w-full h-[600px] overflow-hidden">
+        <div className="relative w-full overflow-hidden">
             <div
                 // Animação do banner
                 className="flex transition-transform duration-500 ease-in-out"
                 style={{ transform: `translateX(-${(bannerAtual - 1) * 100}%)` }}
             >
-                <div className="min-w-full relative h-[600px] ">
+                <div className="min-w-full relative h-[400px] md:h-[600px] ">
                     <Image
                         src="/banner-1.png"
                         alt="banner de promoção 1"
                         fill
                         priority
-                        className="object-cover"
+                        className="object-contain md:object-cover"
                         quality={85}
                     />
                 </div>
-                <div className="min-w-full relative h-[600px]">
+                <div className="min-w-full relative h-[400px] md:h-[600px]">
                     <Image
                         src="/banner-2.png"
                         alt="banner de promoção 2"
                         fill
                         priority
-                        className="object-cover"
+                        className="object-contain md:object-cover"
                         quality={85}
                     />
                 </div>
-                <div className="min-w-full relative h-[600px]">
+                <div className="min-w-full relative h-[400px] md:h-[600px]">
                     <Image
                         src="/banner-3.png"
                         alt="banner de promoção 3"
                         fill
                         priority
-                        className="object-cover"
+                        className="object-contain md:object-cover"
                         quality={85}
                     />
                 </div>

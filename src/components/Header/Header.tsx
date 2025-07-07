@@ -9,12 +9,13 @@ import SubHeader from './SubHeader';
 import Link from 'next/link';
 import Image from 'next/image';
 import { HiMenu, HiX } from 'react-icons/hi';
+import { useCart } from '@/contexts/CartContext';
 
 
 function Header() {
     const [entrarIsHovered, setEntrarIsHovered] = useState(false)
     const [hamburguerIsOpen, setHamburguerIsOpen] = useState(false)
-
+    const { cart } = useCart();
 
     return (
         <header className='max-w-screen'>
@@ -56,8 +57,10 @@ function Header() {
                         <Entrar entrarIsHovered={entrarIsHovered} />
                     </li>
                     <li className='cursor-pointer relative'>
-                        <HiOutlineShoppingBag className="inline text-4xl" />
-                        <span className='absolute top-[18px] right-[-5px] bg-white text-black rounded-full w-[18px] h-[18px] flex justify-center items-center text-xs '>0</span>
+                        <Link href="/cart" className="flex items-center">
+                            <HiOutlineShoppingBag className="inline text-4xl" />
+                            <span className='absolute top-[18px] right-[-5px] bg-white text-black rounded-full w-[18px] h-[18px] flex justify-center items-center text-xs '>{cart.items.length}</span>
+                        </Link>
                     </li>
                 </ul>
 
@@ -111,8 +114,10 @@ function Header() {
                                     className="flex items-center gap-2"
                                     onClick={() => setHamburguerIsOpen(false)}
                                 >
-                                    <HiOutlineShoppingBag className="text-2xl" />
-                                    <span className="relative ">Carrinho<span className='absolute -bottom-0 -left-5 bg-white text-black rounded-full w-4 h-4 flex items-center justify-center text-xs'>0</span></span>
+                                    <Link href="/cart" className="flex items-center gap-2">
+                                        <HiOutlineShoppingBag className="text-2xl" />
+                                        <span className="relative ">Carrinho<span className='absolute -bottom-0 -left-5 bg-white text-black rounded-full w-4 h-4 flex items-center justify-center text-xs'>0</span></span>
+                                    </Link>
                                 </li>
                             </ul>
 

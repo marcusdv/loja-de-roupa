@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-
-// import { CartProvider } from './contexts/CartContext'
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
-
+import { CartProvider } from '@/contexts/CartContext';
+import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
 
 export const metadata: Metadata = {
   title: "Salpatos",
@@ -17,17 +15,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // <CartProvider>
-
     <html lang="pt-br">
-      <body
-        className={'antialiased flex flex-col min-h-screen overflow-x-hidden bg-gray-100'}
-      >
-        <Header />
-        {children}
-        <Footer />
+      <body className={'antialiased flex flex-col min-h-screen overflow-x-hidden bg-gray-100'}>
+        <CartProvider>
+          <Header />
+          {children}
+          <Footer />
+        </CartProvider>
       </body>
-    </html >
-    // </CartProvider>
+    </html>
   );
 }

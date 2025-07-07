@@ -11,11 +11,11 @@ function InputDePesquisa() {
 
     // Exemplo de recomendações (substitua por sua lógica real)
     const suggestions = [
-        "Camisetas",
-        "Calças jeans",
-        "Tênis esportivos",
-        "Acessórios",
-        "Ofertas especiais"
+        "Nike",
+        "Pegada",
+        "Tênis",
+        "Sapatênis",
+        "Mizuno"
     ].filter(item =>
         // O filter() cria um novo array apenas com os elementos que passam no teste da função callback (no caso, os que incluem o searchTerm, ignorando maiúsculas/minúsculas).
         item.toLowerCase().includes(searchTerm.toLowerCase())
