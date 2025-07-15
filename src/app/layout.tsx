@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { CartProvider } from '@/contexts/CartContext';
+import { AuthProvider } from '@/contexts/AuthContext';
+import { ToastProvider } from '@/contexts/ToastContext';
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 
@@ -17,11 +19,15 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body className={'antialiased flex flex-col min-h-screen overflow-x-hidden bg-gray-100'}>
-        <CartProvider>
-          <Header />
-          {children}
-          <Footer />
-        </CartProvider>
+        <AuthProvider>
+          <ToastProvider>
+            <CartProvider>
+              <Header />
+              {children}
+              <Footer />
+            </CartProvider>
+          </ToastProvider>
+        </AuthProvider>
       </body>
     </html>
   );

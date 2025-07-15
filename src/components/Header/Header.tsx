@@ -56,10 +56,17 @@ function Header() {
                     >
                         <Entrar entrarIsHovered={entrarIsHovered} />
                     </li>
+
+                    {/* Bolsa do carrinho */}
                     <li className='cursor-pointer relative'>
                         <Link href="/cart" className="flex items-center">
                             <HiOutlineShoppingBag className="inline text-4xl" />
-                            <span className='absolute top-[18px] right-[-5px] bg-white text-black rounded-full w-[18px] h-[18px] flex justify-center items-center text-xs '>{cart.items.length}</span>
+                            <span className='absolute top-[18px] right-[-5px] bg-white text-black rounded-full w-[18px] h-[18px] flex justify-center items-center text-xs '>
+                                {/* Soma total da quantidade dos itens no carrinho para aparecer na bolsa */}
+                                {
+                                    cart.items.reduce((total,item) => total + item.quantity, 0)
+                                }
+                            </span>
                         </Link>
                     </li>
                 </ul>

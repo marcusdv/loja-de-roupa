@@ -2,6 +2,7 @@
 import { supabase } from "@/lib/supabase";
 import { translatedForBackground } from "@/utils/translateColor";
 import Image from "next/image";
+import AddToCartButton from "./AddToCartButton";
 
 
 export default async function Product({ params, }: { params: Promise<{ id: string }> }) {
@@ -88,9 +89,7 @@ export default async function Product({ params, }: { params: Promise<{ id: strin
                 </div>
 
                 {/* Botão de ação */}
-                <button className="mt-6 bg-black text-white py-2 px-4 rounded hover:bg-gray-800 transition">
-                    Adicionar ao carrinho
-                </button>
+                <AddToCartButton produto={produto} />
             </div>
         </div>
 

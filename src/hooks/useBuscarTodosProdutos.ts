@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Product } from '@/types/types';
-import { buscarProdutos } from '@/services/produtos';
+import { Product } from '@/types/product';
+import { buscarProdutos } from '@/services/produtosService';
 
 // Hook personalizado para gerenciar o estado e carregamento dos produtos
 export function useProdutos() {

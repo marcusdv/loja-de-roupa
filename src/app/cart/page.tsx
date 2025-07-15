@@ -16,7 +16,7 @@ export default function Cart() {
   }
 
   return (
-    <div className="p-4">
+    <div className="p-4 w-8/12 mx-auto">
       <h2 className="text-2xl font-bold mb-4">Carrinho de Compras</h2>
       <div className="space-y-4">
         {cart.items.map((item) => (
@@ -74,7 +74,13 @@ export default function Cart() {
           <span className="font-bold">Total:</span>
           <span className="font-bold">R$ {cart.total.toFixed(2)}</span>
         </div>
-        <Button className="w-full mt-4">Finalizar Compra</Button>
+        {/* 
+        O prop `asChild` permite que o componente Button use outro elemento (como <a>) como seu filho direto,
+        mantendo os estilos e comportamentos do Button. Assim, o <a> recebe as propriedades do Button.
+        */}
+        <Button className="w-full mt-4" asChild>
+          <a href="/checkout">Finalizar Compra</a>
+        </Button>
       </div>
     </div>
   );

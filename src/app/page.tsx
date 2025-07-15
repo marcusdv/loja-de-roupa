@@ -1,6 +1,7 @@
 'use client'
 
 import { useProdutos } from "@/hooks/useBuscarTodosProdutos";
+import { useAuth } from "@/contexts/AuthContext";
 import ProductCard from '@/components/ProductCard/ProductCard';
 import CarouselComponent from '@/components/CarouselComponent/CarouselComponent';
 import MainBanner from "@/components/MainBanner/MainBanner";
@@ -8,6 +9,24 @@ import EmailForm from "@/components/EmailForm/EmailForm";
 
 export default function Loja() {
   const { produtos, loading, error } = useProdutos();
+  const { user } = useAuth();
+
+  // Função para extrair o nome do email (antes do @)
+  const getUserDisplayName = () => {
+    if (!user) return null;
+    
+    // Se o usuário tem metadata com nome, usa ele
+    if (user.user_metadata?.full_name) {
+      return user.user_metadata.full_name;
+    }
+    
+    // Caso contrário, extrai o nome do email (parte antes do @)
+    if (user.email) {
+      return user.email.split('@')[0];
+    }
+    
+    return 'Usuário';
+  };
 
 
   const produtosNaTela = () => {
@@ -64,12 +83,24 @@ export default function Loja() {
 
   return (
     <>
+      {/* Seção de boas-vindas para usuário logado */}
+      {user && (
+        <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white py-6 px-4 text-center">
+          <h2 className="text-2xl font-bold mb-2">
+            Olá, {getUserDisplayName()}! 👋
+          </h2>
+          <p className="text-blue-100">
+            Bem-vindo(a) de volta à Salpatos! Encontre os melhores calçados para você.
+          </p>
+        </div>
+      )}
+
       {/* Banner */}
       <div className="flex flex-col items-center gap-14">
         <MainBanner />
 
         {/* Cadastrar email para novidades */}
-        <EmailForm />
+        {!user && <EmailForm />}
 
         {/* Navegação carousel por categorias */}
         <div className='flex flex-col justify-center w-screen items-center'>

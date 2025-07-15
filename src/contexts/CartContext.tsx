@@ -1,5 +1,5 @@
 'use client'
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import { Cart, CartItem, CartContextType } from '@/types/cart';
 
 // Cria o contexto do carrinho
@@ -7,11 +7,22 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 // Provider que gerencia o estado do carrinho
 export function CartProvider({ children }: { children: ReactNode }) {
-    // Estado inicial do carrinho
-    const [cart, setCart] = useState<Cart>({
-        items: [],
-        total: 0,
-    });
+    // Inicializa vazio para evitar mismatch no SSR
+    const [cart, setCart] = useState<Cart>({ items: [], total: 0 });
+
+    // Carrega do localStorage só no client
+    useEffect(() => {
+        const stored = localStorage.getItem('cart');
+        if (stored) {
+            setCart(JSON.parse(stored));
+        }
+    }, []);
+
+    // Salva no localStorage sempre que o carrinho mudar
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }, [cart]);
+
 
     // Adiciona um item ao carrinho ou incrementa sua quantidade
     const addItem = (item: CartItem) => {
